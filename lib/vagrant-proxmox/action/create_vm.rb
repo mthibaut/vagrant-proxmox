@@ -60,7 +60,8 @@ module VagrantPlugins
             cores: config.qemu_cores,
             memory: config.vm_memory,
             net0: network,
-            description: desc
+            description: desc,
+            pool: config.pool
           }
         end
 

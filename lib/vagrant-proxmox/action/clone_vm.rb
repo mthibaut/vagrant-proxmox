@@ -24,7 +24,7 @@ module VagrantPlugins
 					rescue StandardError => e
 						raise VagrantPlugins::Proxmox::Errors::VMCloneError, proxmox_exit_status: e.message
 					end
-	
+
 					begin
 						vm_id = connection(env).get_free_vm_id
 						params = create_params_qemu(config, env, vm_id, template_vm_id)
@@ -43,10 +43,13 @@ module VagrantPlugins
 				private
 				def create_params_qemu(config, env, vm_id, template_vm_id)
 					# without network, which will added in ConfigClonedVm
-					{vmid: template_vm_id,
-					 newid: vm_id,
-					 name: env[:machine].config.vm.hostname || env[:machine].name.to_s,
-					 description: "#{config.vm_name_prefix}#{env[:machine].name}"}
+					{
+						vmid: template_vm_id,
+						newid: vm_id,
+						name: env[:machine].config.vm.hostname || env[:machine].name.to_s,
+						description: "#{config.vm_name_prefix}#{env[:machine].name}",
+						pool: config.pool
+					}
 				end
 
 			end

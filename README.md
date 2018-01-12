@@ -143,6 +143,7 @@ Finally run `vagrant up --provider=proxmox` to create and start the new OpenVZ c
 * `qemu_bridge` connect automatically to this bridge, default 'vmbr0'
 * `selected_node` If specified, only this specific node is used to create machines
 * `disable_adjust_forwarded_port` If true, no ssh manipulations will be done.
+* `pool` Resource pool to use.
 
 ## Debug RestClient Communication with Proxmox-Node
 
