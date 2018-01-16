@@ -41,6 +41,7 @@ module VagrantPlugins
 						sockets: config.qemu_sockets,
 						cores: config.qemu_cores,
 						memory: config.vm_memory,
+						agent: get_rest_boolean(config.qemu_agent),
 						description: desc
 					}
 					if config.qemu_iso

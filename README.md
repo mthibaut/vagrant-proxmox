@@ -141,6 +141,7 @@ Finally run `vagrant up --provider=proxmox` to create and start the new OpenVZ c
 * `qemu_sockets` The number of CPU sockets available to the VM
 * `qemu_nic_model` which model of network interface card to use, default 'e1000'
 * `qemu_bridge` connect automatically to this bridge, default 'vmbr0'
+* `qemu_agent` whether to enable to qemu agent endpoint.
 * `selected_node` If specified, only this specific node is used to create machines
 * `disable_adjust_forwarded_port` If true, no ssh manipulations will be done.
 * `pool` Resource pool to use.

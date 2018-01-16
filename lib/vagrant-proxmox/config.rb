@@ -172,6 +172,12 @@ module VagrantPlugins
       # @return [String]
       attr_accessor :qemu_cache
 
+      # Enables the qemu agent endpoint.
+      # defaults to false
+      #
+      # @return [Boolean]
+      attr_accessor :qemu_agent
+
       # disable ssh port adjustments
       #
       # @return [Boolean]
@@ -340,6 +346,7 @@ module VagrantPlugins
         @qemu_bridge = 'vmbr0'
         @qemu_disk_format = 'qcow2'
         @qemu_cache = 'none'
+        @qemu_agent = false
         @disable_adjust_forwarded_port = true
         @lxc_cpulimit = 0
         @lxc_cpuunits = 1024

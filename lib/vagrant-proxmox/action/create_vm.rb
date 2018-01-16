@@ -61,6 +61,7 @@ module VagrantPlugins
             memory: config.vm_memory,
             net0: network,
             description: desc,
+            agent: get_rest_boolean(config.qemu_agent),
             pool: config.pool
           }
         end
