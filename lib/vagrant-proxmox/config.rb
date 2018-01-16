@@ -340,7 +340,7 @@ module VagrantPlugins
         @qemu_bridge = 'vmbr0'
         @qemu_disk_format = 'qcow2'
         @qemu_cache = 'none'
-        @disable_adjust_forwarded_port = false
+        @disable_adjust_forwarded_port = true
         @lxc_cpulimit = 0
         @lxc_cpuunits = 1024
         @lxc_mount_points = {}
