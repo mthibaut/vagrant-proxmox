@@ -142,7 +142,7 @@ module VagrantPlugins
 						b1.use Call, ::Vagrant::Action::Builtin::DestroyConfirm do |env2, b2|
 							if env2[:result]
 								b2.use Call, IsStopped do |env3, b3|
-									b3.use ShutdownVm unless env3[:result]
+									b3.use StopVm unless env3[:result]
 									b3.use DestroyVm
 									b3.use ::Vagrant::Action::Builtin::ProvisionerCleanup
 									b3.use CleanupAfterDestroy
