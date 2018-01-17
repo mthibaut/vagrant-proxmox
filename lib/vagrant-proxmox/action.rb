@@ -122,7 +122,7 @@ module VagrantPlugins
 								b2.use MessageAlreadyStopped
 							else
 								b2.use ConnectProxmox
-								b2.use ShutdownVm
+								b2.use env2[:force_halt] ? StopVm : ShutdownVm
 							end
 						end
 					else
