@@ -36,7 +36,6 @@ module VagrantPlugins
 
 					env[:machine].id = "#{node}/#{vm_id}"
 
-					env[:ui].info I18n.t('vagrant_proxmox.done')
 					next_action env
 				end
 
