@@ -34,6 +34,7 @@ module VagrantPlugins
 							b1.use GetNodeList
 							b1.use SelectNode
 							b1.use Provision
+							b1.use SetHostname
 							if env1[:machine].provider_config.vm_type == :openvz
 								b1.use Call, UploadTemplateFile do |env2, b2|
 									if env2[:result] == :ok
