@@ -28,13 +28,13 @@ and provision Proxmox virtual machines.
 
 ## Installation
 
+Download `gem` file from https://github.com/DataxPL/vagrant-proxmox/releases.
+
 Install using standard Vagrant plugin method:
 
 ```
-$ vagrant plugin install vagrant-proxmox
+$ vagrant plugin install vagrant-proxmox-0.2.0.gem
 ```
-
-This will install the plugin from [RubGems.org](http://rubygems.org/).
 
 ## Usage
 
