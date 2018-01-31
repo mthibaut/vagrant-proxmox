@@ -27,6 +27,10 @@ module VagrantPlugins
 
 					begin
 						vm_id = connection(env).get_free_vm_id
+						if config.hostname_append_id
+							hostname = env[:machine].config.vm.hostname
+							env[:machine].config.vm.hostname = "#{hostname}#{vm_id}"
+						end
 						params = create_params_qemu(config, env, vm_id, template_vm_id)
 						exit_status = connection(env).clone_vm node: node, vm_type: config.vm_type, params: params
 						exit_status == 'OK' ? exit_status : raise(VagrantPlugins::Proxmox::Errors::ProxmoxTaskFailed, proxmox_exit_status: exit_status)

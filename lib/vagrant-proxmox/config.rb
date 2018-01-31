@@ -313,6 +313,12 @@ module VagrantPlugins
       # @return [String]
       attr_accessor :lxc_ssh_public_keys
 
+      # Appends VM ID to the guest hostname.
+      # defaults to false
+      #
+      # @return [Boolean]
+      attr_accessor :hostname_append_id
+
       def initialize
         @endpoint = UNSET_VALUE
         @selected_node = UNSET_VALUE
@@ -370,6 +376,7 @@ module VagrantPlugins
         @description = UNSET_VALUE
         @use_plain_description = false
         @lxc_ssh_public_keys = UNSET_VALUE
+        @hostname_append_id = false
       end
 
       # This is the hook that is called to finalize the object before it is put into use.

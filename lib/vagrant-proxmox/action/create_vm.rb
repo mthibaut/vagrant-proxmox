@@ -18,6 +18,10 @@ module VagrantPlugins
 
           begin
             vm_id = connection(env).get_free_vm_id
+            if config.hostname_append_id
+              hostname = env[:machine].config.vm.hostname
+              env[:machine].config.vm.hostname = "#{hostname}#{vm_id}"
+            end
             params = create_params_openvz(config, env, vm_id) if config.vm_type == :openvz
             params = create_params_lxc(config, env, vm_id) if config.vm_type == :lxc
             params = create_params_qemu(config, env, vm_id) if config.vm_type == :qemu

@@ -145,6 +145,7 @@ ENV['VAGRANT_DEFAULT_PROVIDER'] = 'proxmox'
 * `selected_node` If specified, only this specific node is used to create machines
 * `disable_adjust_forwarded_port` If true, no ssh manipulations will be done.
 * `pool` Resource pool to use.
+* `hostname_append_id` Appends guest ID to its' hostname. Note that this effectively sets the hostname to ID, if it was empty beforehand.
 
 ## Debug RestClient Communication with Proxmox-Node
 
