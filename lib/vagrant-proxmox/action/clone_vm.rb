@@ -51,7 +51,8 @@ module VagrantPlugins
 						newid: vm_id,
 						name: env[:machine].config.vm.hostname || env[:machine].name.to_s,
 						description: "#{config.vm_name_prefix}#{env[:machine].name}",
-						pool: config.pool
+						pool: config.pool,
+						full: get_rest_boolean(config.full_clone),
 					}
 				end
 

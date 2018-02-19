@@ -319,6 +319,12 @@ module VagrantPlugins
       # @return [Boolean]
       attr_accessor :hostname_append_id
 
+      # Creates full clone, instead of linked one.
+      # defaults to false
+      #
+      # @return [Boolean]
+      attr_accessor :full_clone
+
       def initialize
         @endpoint = UNSET_VALUE
         @selected_node = UNSET_VALUE
@@ -377,6 +383,7 @@ module VagrantPlugins
         @use_plain_description = false
         @lxc_ssh_public_keys = UNSET_VALUE
         @hostname_append_id = false
+        @full_clone = false
       end
 
       # This is the hook that is called to finalize the object before it is put into use.
