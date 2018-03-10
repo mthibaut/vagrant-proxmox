@@ -71,7 +71,7 @@ module VagrantPlugins
           config = env[:machine].provider_config
 
           if config.use_network_defaults &&
-             config.lxc_network_defaults.is_a?(Array)
+            config.lxc_network_defaults.is_a?(Array)
             # define shortcuts to networks and network_defaults
             network_defaults = config.lxc_network_defaults
             networks = env[:machine].config.vm.networks
@@ -85,7 +85,7 @@ module VagrantPlugins
               # merge network
               networks[i][1] = network_defaults[i][1].merge(networks[i][1])
               env[:ui].detail "Network merged #{networks[i].inspect}" if config
-                                                                         .dry
+              .dry
             end
           end
 
@@ -106,11 +106,11 @@ module VagrantPlugins
             %i(net_id bridge).each do |e|
               unless c.include?(e)
                 raise Errors::VMConfigError,
-                      error_msg: "Network #{n} has no :#{e} element."
+                  error_msg: "Network #{n} has no :#{e} element."
               end
               if c[e].nil?
                 raise Errors::VMConfigError,
-                      error_msg: "Network #{n} has empty :#{e} element."
+                  error_msg: "Network #{n} has empty :#{e} element."
               end
             end
 
@@ -120,8 +120,8 @@ module VagrantPlugins
 
             unless c.include?(:interface)
               raise Errors::VMConfigError,
-                    error_msg: "Network #{n} has no :interface element."\
-                               " Set it to 'eth0' or similar."
+                error_msg: "Network #{n} has no :interface element."\
+                " Set it to 'eth0' or similar."
             end
 
             # configuration entry
@@ -162,8 +162,8 @@ module VagrantPlugins
 
             if has_ip == false
               raise Errors::VMConfigError,
-                    error_msg: "Network #{n} has no :ip or :ip6 element."\
-                               ' You need to set an IP-Address'
+                error_msg: "Network #{n} has no :ip or :ip6 element."\
+                ' You need to set an IP-Address'
             end
             # other options
             %w(mtu rate tag trunks).each do |entry|
@@ -181,9 +181,9 @@ module VagrantPlugins
           end
           if has_public_network == false
             raise Errors::VMConfigError,
-                  error_msg: 'Machine has no public_network. vagrant-proxmox'\
-                             ' won\'t be able to connect to it. Please edit '\
-                             ' your config.'
+              error_msg: 'Machine has no public_network. vagrant-proxmox'\
+              ' won\'t be able to connect to it. Please edit '\
+              ' your config.'
           end
         end
 
@@ -220,7 +220,7 @@ module VagrantPlugins
             return false unless IPAddr.new(c[:ip])
           rescue IPAddr::Error
             raise Errors::VMConfigError,
-                  error_msg: "Invalid IP-Address supplied: #{c[:ip]}"
+              error_msg: "Invalid IP-Address supplied: #{c[:ip]}"
           end
           "#{c[:ip]}/#{c[:ip_cidr]}"
         end
@@ -237,7 +237,7 @@ module VagrantPlugins
             return false unless IPAddr.new(c[:ip6])
           rescue IPAddr::Error
             raise Errors::VMConfigError,
-                  error_msg: "Invalid IP-Address supplied: #{c[:ip6]}"
+              error_msg: "Invalid IP-Address supplied: #{c[:ip6]}"
           end
           "#{c[:ip6]}/#{c[:ip6_cidr]}"
         end
@@ -272,13 +272,13 @@ module VagrantPlugins
             # validate config
             unless mp =~ /^mp\d$/
               raise Errors::VMConfigError,
-                    error_msg: "Invalid mount point #{mp} in config."
+                error_msg: "Invalid mount point #{mp} in config."
             end
             # check required options
             %i(volume mp backup size).each do |k|
               unless c.include?(k)
                 raise Errors::VMConfigError,
-                      error_msg: "MountPoint #{mp} must have a '#{k}' item"
+                  error_msg: "MountPoint #{mp} must have a '#{k}' item"
               end
             end
             # combine volume:size into volume

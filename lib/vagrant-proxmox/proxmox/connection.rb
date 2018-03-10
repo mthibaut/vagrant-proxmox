@@ -64,9 +64,9 @@ module VagrantPlugins
           retryable(on: VagrantPlugins::Proxmox::ProxmoxTaskNotFinished,
                     tries: timeout / task_status_check_interval + 1,
                     sleep: task_status_check_interval) do
-            exit_status = get_task_exitstatus task_upid
-            exit_status.nil? ? raise(VagrantPlugins::Proxmox::ProxmoxTaskNotFinished) : exit_status
-          end
+                      exit_status = get_task_exitstatus task_upid
+                      exit_status.nil? ? raise(VagrantPlugins::Proxmox::ProxmoxTaskNotFinished) : exit_status
+                    end
         rescue VagrantPlugins::Proxmox::ProxmoxTaskNotFinished
           raise VagrantPlugins::Proxmox::Errors::Timeout, timeout_message
         end
@@ -149,7 +149,7 @@ module VagrantPlugins
         delete_file(filename: file, content_type: content_type, node: node, storage: storage) if replace
         unless is_file_in_storage? filename: file, node: node, storage: storage
           res = post "/nodes/#{node}/storage/#{storage}/upload", content: content_type,
-                                                                 filename: File.new(file, 'rb'), node: node, storage: storage
+          filename: File.new(file, 'rb'), node: node, storage: storage
           wait_for_completion task_response: res, timeout_message: 'vagrant_proxmox.errors.upload_timeout'
         end
       end
@@ -184,12 +184,12 @@ module VagrantPlugins
 
         response = post "/nodes/#{node}/qemu/#{vm_id}/agent", command: "network-get-interfaces"
         response[:data][:result]
-          .select { |iface| iface[:name] != 'lo' }
-          .map { |iface| iface[:'ip-addresses'] }
-          .flatten
-          .select { |ip| ip[:'ip-address-type'] == 'ipv4' }
-          .map { |ip| ip[:'ip-address'] }
-          .first
+        .select { |iface| iface[:name] != 'lo' }
+        .map { |iface| iface[:'ip-addresses'] }
+        .flatten
+        .select { |ip| ip[:'ip-address-type'] == 'ipv4' }
+        .map { |ip| ip[:'ip-address'] }
+        .first
       end
 
       # This is called every time to retrieve the node and vm_type, hence on large
@@ -201,9 +201,9 @@ module VagrantPlugins
       def get_vm_info(vm_id)
         response = get '/cluster/resources?type=vm'
         response[:data]
-          .select { |m| m[:id] =~ /^[a-z]*\/#{vm_id}$/ }
-          .map { |m| { id: vm_id, type: /^(.*)\/(.*)$/.match(m[:id])[1], node: m[:node] } }
-          .first
+        .select { |m| m[:id] =~ /^[a-z]*\/#{vm_id}$/ }
+        .map { |m| { id: vm_id, type: /^(.*)\/(.*)$/.match(m[:id])[1], node: m[:node] } }
+        .first
       end
 
       private

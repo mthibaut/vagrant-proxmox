@@ -30,7 +30,7 @@ module VagrantPlugins
                                      action: 'create_vm',
                                      params: params)
               raise VagrantPlugins::Proxmox::Errors::VMCreateError,
-                    proxmox_exit_status: 'Dry run enabled'
+                proxmox_exit_status: 'Dry run enabled'
             end
             exit_status = connection(env).create_vm node: node, vm_type: config.vm_type, params: params
             exit_status == 'OK' ? exit_status : raise(VagrantPlugins::Proxmox::Errors::ProxmoxTaskFailed, proxmox_exit_status: exit_status)
@@ -61,12 +61,12 @@ module VagrantPlugins
             ide2: "#{config.qemu_iso},media=cdrom",
             sata0: "#{config.qemu_storage}:#{config.qemu_disk_size},format=#{config.qemu_disk_format},cache=#{config.qemu_cache}",
             sockets: config.qemu_sockets,
-            cores: config.qemu_cores,
-            memory: config.vm_memory,
-            net0: network,
-            description: desc,
-            agent: get_rest_boolean(config.qemu_agent),
-            pool: config.pool
+              cores: config.qemu_cores,
+              memory: config.vm_memory,
+              net0: network,
+              description: desc,
+              agent: get_rest_boolean(config.qemu_agent),
+              pool: config.pool
           }
         end
 
@@ -101,25 +101,25 @@ module VagrantPlugins
             password: 'vagrant',
             rootfs: "#{config.vm_storage}:#{config.vm_disk_size}",
             memory: config.vm_memory,
-            description: desc,
-            cmode: config.lxc_cmode.to_s,
-            cpulimit: config.lxc_cpulimit,
-            cpuunits: config.lxc_cpuunits,
-            swap: config.lxc_swap,
-            tty: config.lxc_tty,
-            pool: config.pool
+              description: desc,
+              cmode: config.lxc_cmode.to_s,
+              cpulimit: config.lxc_cpulimit,
+              cpuunits: config.lxc_cpuunits,
+              swap: config.lxc_swap,
+              tty: config.lxc_tty,
+              pool: config.pool
           }.tap do |params|
             params['ssh-public-keys'] = config.lxc_ssh_public_keys
             params[:nameserver] = config.lxc_nameserver.to_s\
-                                    if config.lxc_nameserver
-            params[:onboot] = get_rest_boolean(config.lxc_onboot)
-            params[:protection] = get_rest_boolean(config.lxc_protection)
-            params[:console] = get_rest_boolean(config.lxc_console)
-            add_lxc_network_config(env, params)
-            add_lxc_mount_points(env, config, params)
+              if config.lxc_nameserver
+                params[:onboot] = get_rest_boolean(config.lxc_onboot)
+                params[:protection] = get_rest_boolean(config.lxc_protection)
+                params[:console] = get_rest_boolean(config.lxc_console)
+                add_lxc_network_config(env, params)
+                add_lxc_mount_points(env, config, params)
+            end
           end
         end
       end
     end
   end
-end

@@ -1,23 +1,23 @@
 module VagrantPlugins
-	module Proxmox
+  module Proxmox
 
-		module ApiError
+    module ApiError
 
-			class InvalidCredentials < StandardError
-			end
+      class InvalidCredentials < StandardError
+      end
 
-			class ConnectionError < StandardError
-			end
+      class ConnectionError < StandardError
+      end
 
-			class NotImplemented < StandardError
-			end
+      class NotImplemented < StandardError
+      end
 
-			class ServerError < StandardError
-			end
+      class ServerError < StandardError
+      end
 
-			class UnauthorizedError < StandardError
-			end
+      class UnauthorizedError < StandardError
+      end
 
-		end
-	end
+    end
+  end
 end

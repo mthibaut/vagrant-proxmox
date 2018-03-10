@@ -1,9 +1,9 @@
 module VagrantPlugins::Proxmox
-	module RequiredParameters
+  module RequiredParameters
 
-		def required keyword
+    def required keyword
 
-			fail ArgumentError, "missing keyword: #{keyword}", caller
-		end
-	end
+      fail ArgumentError, "missing keyword: #{keyword}", caller
+    end
+  end
 end
